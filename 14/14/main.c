@@ -1,23 +1,25 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-int main(int argc, char * argv[]) {
-    char *pc = NULL;
-    int i = 0;
+struct Book {
+    int number;
+    char title[10];
+};
     
-    pc = (char*)malloc(100*sizeof(char));
-    if(pc == NULL){
-        printf("ERROR\n");
-        exit(1);
-    }
+int main(int argc, char *argv[])
+{
+    struct Book *p;
     
-    for (i=0;i<26;i++)
-        pc[i] = 'a' + i;
-    pc[i] = 0;
+    p = (struct Book*)malloc(2*sizeof(struct Book));
     
-    printf("%s\n", pc);
+    p->number = 1;
+    strcpy(p->title, "C Programming");
     
-    free(pc);
+    (p+1)->number = 2;
+    strcpy((p+1)->title, "Electronics");
+    
+    free(p);
     
     system("PAUSE");
     return 0;
